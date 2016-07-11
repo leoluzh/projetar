@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui" >
+<h:head></h:head>
+<h:body>
+	
+    <ui:composition>
+
+		<p:dialog 
+			id="criarOuAtualizarUsuarioDialogo" 
+			widgetVar="criarOuAtualizarUsuarioDialogo"
+			header="#{usuario.id eq null :  'Criar Usuário' ? 'Editar Usuário' }" 
+			modal="true" 
+			closable="false" 
+			draggable="true" 
+			maximizable="true" 
+			minimizable="false" >
+			<ui:include src="/pages/admin/users/create_or_edit_template.xhtml"/>
+		</p:dialog>
+
+    </ui:composition>
+    
+</h:body>
+</h:html>    

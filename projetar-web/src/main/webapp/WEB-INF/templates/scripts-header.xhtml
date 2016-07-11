@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+    <ui:composition>
+    	
+    	<ui:insert name="before-default-scripts">
+    		<script type="text/javascript">
+    		//<![CDATA[
+    			if( console ){
+    				console.log("before default scripts definitions");
+    			}
+    		//]]>	
+    		</script>
+    	</ui:insert>
+    	
+		<h:outputStylesheet library="css" name="bootstrap.css"/>
+		<h:outputStylesheet library="css" name="font-awesome.css"/>
+		<!-- Morris -->
+		<h:outputStylesheet library="css" name="plugins/morris/morris-0.4.3.min.css"/>
+		<h:outputStylesheet library="css" name="animate.css" />
+		<h:outputStylesheet library="css" name="style.css"/>
+    	<h:outputStylesheet library="css" name="plugins/toastr/toastr.min.css"/>
+        <h:outputStylesheet library="css" name="plugins/gritter/jquery.gritter.css"/>
+        <h:outputStylesheet library="css" name="plugins/sweetalert/sweetalert.css"/>
+		
+   	
+    	
+	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	    	<h:outputScript library="js" name="html5shiv.min.js"/>
+	    	<h:outputScript library="js" name="respond.min.js"/>
+	    <![endif]-->
+	    	    
+    	<ui:insert name="after-default-scripts">
+    		<script type="text/javascript">
+    	   	//<![CDATA[
+    			if( console ){
+    				console.log("after default scripts definitions");
+    			}
+    		//]]>	
+    		</script>
+    	</ui:insert>	
+    	  
+    </ui:composition>
+</h:body>
+</h:html>

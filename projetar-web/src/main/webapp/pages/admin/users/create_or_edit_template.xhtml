@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui" >
+<h:head></h:head>
+<h:body>
+	
+    <ui:composition>
+    	<!--  -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5><h:outputText value="#{msg['app.save.template.title.usuario']}" /></h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li>
+                                    	<p:commandLink 
+                                    		action="#{usuarioController.saveOrUpdate( usuario )}" 
+                                    		value="#{msg['app.save.template.action.menu.save']}"/>
+                                    </li>
+                                    <li>
+                                    	<p:commandLink 
+                                    		action="#{usuarioController.delete( usuario )}" 
+                                    		value="#{msg['app.save.template.action.menu.delete']}"/>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                        	<h:form id="usuarioCreateOrUptateForm" styleClass="form-horizontal">
+ 
+                                <div class="form-group">
+                                    <h:outputLabel for="username" value="#{msg['app.save.template.username']}" styleClass="col-sm-2 control-label"/>
+                                    <div class="col-sm-10">
+                                    	<h:inputText id="username" value="#{usuario.username}" styleClass="form-control" 
+                                    		placeholder="#{mgs['app.save.template.username.placeholder']}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="nome" value="#{msg['app.save.template.name']}" styleClass="col-sm-2 control-label"/>
+                                    <div class="col-sm-10">
+                                    	<h:inputText id="nome" value="#{usuario.nome}" styleClass="form-control" 
+                                    		placeholder="#{msg['app.save.template.name.placeholder']}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel for="email" value="#{msg['app.save.template.email']}" styleClass="col-sm-2 control-label"/>
+                                    <div class="col-sm-10">
+                                    	<h:inputText id="email" value="#{usuario.email}" styleClass="form-control" 
+                                    		placeholder="#{msg['app.save.template.email.placeholder']}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                	<h:outputLabel form="senha1" value="#{msg['app.save.template.password1']}" styleClass="col-sm-2 control-label" />
+                                    <div class="col-sm-10">
+                                    	<h:inputSecret id="senha1" value="#{usuario.senha1}" styleClass="form-control" 
+                                    	placeholder="#{msg['app.save.template.password1.placeholder']}" />
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                	<h:outputLabel form="senha2" value="#{msg['app.save.template.password2']}" styleClass="col-sm-2 control-label" />
+                                    <div class="col-sm-10">
+                                    	<h:inputSecret id="senha2" value="#{usuario.senha2}" styleClass="form-control" 
+                                    	placeholder="#{msg['app.save.template.password2.placeholder']}" />
+                                    </div>
+                                </div>
+                                
+                                <div class="hr-line-dashed"></div>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                    	<p:commandLink value="#{msg['app.save.template.action.cancel']}" styleClass="btn btn-white"/>
+                                    	<p:commandLink value="#{msg['app.save.template.action.save']}" styleClass="btn btn-primary"/>
+                                    </div>
+                                </div>
+                                
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    </ui:composition>
+</h:body>
+</h:html>

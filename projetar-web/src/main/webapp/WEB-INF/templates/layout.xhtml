@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:customcomponents="http://xmlns.jcp.org/jsf/composite/customcomponents">
+<h:head>
+	<meta http-equiv="Content-Language" content="pt-br"/>	
+   	<meta charset="utf-8"/>
+   	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+   	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+   	<meta name="description" content="#{messages['app.description']}"/>
+   	<meta name="author" content="#{messages['app.author']}"/>  
+   	<meta name="_csrf" content="#{_csrf.token}"/>
+   	<meta name="_csrf_header" content="#{_csrf.headerName}"/>
+   	<title>
+   		<ui:insert name="app-title">
+	    	<h:outputText value="#{msg['app.page.template.title']}" />
+   		</ui:insert>
+   	</title>
+
+
+	<ui:insert name="scripts-head">
+		<ui:include src="/WEB-INF/templates/scripts-header.xhtml" />
+	</ui:insert>
+	
+    <ui:insert name="scripts-footer">
+    	<ui:include src="/WEB-INF/templates/scripts-footer.xhtml" />
+    </ui:insert>
+	
+</h:head>
+<h:body>
+
+	<p:ajaxStatus id="globalAjaxStatus" 
+				widgetVar="globalAjaxStatusWidget" 
+				onstart="utils.onStartGlobalAjax();"  
+				onsuccess="utils.onSuccessGlobalAjax();" 
+				onerror="utils.onErrorGlobalAjax();" 
+				oncomplete="utils.onCompleteGlobalAjax()" />
+	<p:dialog 
+		widgetVar="statusDialog" 
+		modal="true" 
+		draggable="false" 
+		closable="false" 
+		resizable="false" 
+		showHeader="false">
+       <div class="sk-spinner sk-spinner-cube-grid">
+           <div class="sk-cube"></div>
+           <div class="sk-cube"></div>
+           <div class="sk-cube"></div>
+           <div class="sk-cube"></div>
+           <div class="sk-cube"></div>
+           <div class="sk-cube"></div>
+           <div class="sk-cube"></div>
+           <div class="sk-cube"></div>
+           <div class="sk-cube"></div>
+       </div>
+	</p:dialog>
+	
+	<div id="wrapper">
+ 		
+ 		<!-- LEFT NAVBAR -->
+ 		<ui:insert name="navbar">
+ 			<ui:include src="/WEB-INF/templates/navbar.xhtml" />
+ 		</ui:insert>
+
+		<!-- MAIN CONTENT -->
+		<div id="page-wrapper" class="gray-bg dashbard-1">
+			
+			<h:form ></h:form>
+			
+			<!-- TOP NAVBAR -->
+			<ui:insert name="navbar-top">
+				<ui:include src="/WEB-INF/templates/navbar-top.xhtml" />
+			</ui:insert>
+			
+			<!-- PAGE HEAD CONTEXT -->
+			<div class="row wrapper border-bottom white-bg dashboard-header">
+				<div class="col-lg-10">
+					<h2>
+						<ui:insert name="title">
+							Projetar
+						</ui:insert>
+					</h2>
+					<ol class="breadcrumb">
+						<ui:insert name="breadcrumb">
+							
+						</ui:insert>
+					</ol> 
+				</div>
+				<div class="col-lg-2">
+					<div class="title-action">
+						<ui:insert name="title-action">
+												
+						</ui:insert>
+					</div>
+				</div>
+				<div id="message-container" class="col-lg-1">
+					<!-- SHOW ALL APPLICATION MSG (INFO/WARN/ERROR) -->
+					<p:messages 
+						id="messages" 
+						autoUpdate="true" 
+						closable="true" 
+						showDetail="true" 
+						showSummary="true" 
+						showIcon="true" />
+					
+				</div>
+			</div>
+			
+			<!-- PRINCIPAL CONTENT -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="wrapper wrapper-content">
+						<ui:insert name="content">
+							<ui:include src="/WEB-INF/templates/default-content.xhtml"/>
+						</ui:insert>
+					</div>
+					<div class="footer fixed">
+						<div class="pull-right">
+							<h:outputText value="#{msg['app.version.desc']}"/><strong><h:outputText value="#{msg['app.version']}" /></strong>
+						</div>
+						<div>
+							<h:outputText value="#{msg['app.footer.info']}" />
+						</div>
+					</div>
+				</div>
+			</div>
+						
+		</div> 
+		
+		<!-- RIGHT SIDEBAR -->
+		<ui:insert name="right-sidebar">
+			<ui:include src="/WEB-INF/templates/right-sidebar.xhtml" />
+		</ui:insert>
+		
+    </div>
+    
+    <!-- FOOTER SCRIPTS -->
+    <ui:insert name="scripts-footer-after">
+    	<ui:include src="/WEB-INF/templates/scripts-footer-after.xhtml" />
+    </ui:insert>
+    
+</h:body>
+</html>

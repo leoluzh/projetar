@@ -1,0 +1,462 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:projetar="http://xmlns.jcp.org/jsf/composite/projetos">
+<h:head></h:head>
+<h:body>
+	<cc:interface>
+		
+		<cc:attribute name="id" required="false" default="projetos" displayName="id"/>
+		<cc:attribute name="renderedPanelContainer" required="false" default="true" displayName="renderedPanelContainer"/>
+		
+		<cc:attribute name="valueDataTable" required="true" default="projetosController.projetos" displayName="valueDataTable"/>
+		<cc:attribute name="renderedDataTable" required="false" default="true" displayName="renderedDataTable"/>
+		<cc:attribute name="paginatorDataTable" required="false" default="true" displayName="paginatorDataTable"/>
+		<cc:attribute name="rowsDataTable" required="false" default="10" displayName="rowsDataTable"/>
+		<cc:attribute name="rowsPerPageDataTable" required="false" default="5,10,15,20" displayName="rowsPerPageDataTable"/>
+		<cc:attribute name="paginatorTemplateDataTable" required="false" 
+		default="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+		displayName="paginatorTemplateDataTable"/>
+		<cc:attribute name="emptyMessageDataTable" required="false" default="msg['projetos.tabela.vazia']" displayName="emptyMessageDataTable"/>
+		
+		<cc:attribute name="headerTextColumnId" required="false" default="msg['projetos.projeto.id']" displayName="headerTextColumnId"/>
+		<cc:attribute name="renderedColumnId" required="false" default="true" displayName="renderedColumnId"/>
+		<cc:attribute name="priorityColumnId" required="false" default="1" displayName="priorityColumnId"/>
+		<cc:attribute name="sortableColumnId" required="false" default="true" displayName="sortableColumnId"/> 
+		<cc:attribute name="filterableColumnId" required="false" default="true" displayName="filterableColumnId"/>
+		<cc:attribute name="filterFunctionColumnId" required="false" default="contains" displayName="filterFunctionColumnId"/>
+		
+		<cc:attribute name="headerTextColumnData" required="false" default="msg['projetos.projeto.data']" displayName="headerTextColumnData"/>
+		<cc:attribute name="renderedColumnData" required="false" default="true" displayName="renderedColumnData"/>
+		<cc:attribute name="priorityColumnData" required="false" default="2" displayName="priorityColumnData"/>
+		<cc:attribute name="sortableColumnData" required="false" default="true" displayName="sortableColumnData"/> 
+		<cc:attribute name="filterableColumnData" required="false" default="true" displayName="filterableColumnData"/>
+		<cc:attribute name="filterFunctionColumnData" required="false" default="contains" displayName="filterFunctionColumnData"/>
+		<cc:attribute name="outputformatColumnData" required="false" default="dd/MM/yyyy" displayName="outputformatColumnData"/>
+
+		<cc:attribute name="headerTextColumnValor" required="false" default="msg['projetos.projeto.valor']" displayName="headerTextColumnValor"/>
+		<cc:attribute name="renderedColumnValor" required="false" default="true" displayName="renderedColumnValor"/>
+		<cc:attribute name="priorityColumnValor" required="false" default="2" displayName="priorityColumnValor"/>
+		<cc:attribute name="sortableColumnValor" required="false" default="true" displayName="sortableColumnValor"/> 
+		<cc:attribute name="filterableColumnValor" required="false" default="true" displayName="filterableColumnValor"/>
+		<cc:attribute name="filterFunctionColumnValor" required="false" default="contains" displayName="filterFunctionColumnValor"/>
+		<cc:attribute name="currencyCodeColumnValor" required="false" default="BRL" displayName="currencyCodeColumnValor"/>
+		<cc:attribute name="currencySymbolColumnValor" required="false" default="R$" displayName="currencySymbolColumnValor"/>
+
+		<cc:attribute name="headerTextColumnUnidade" required="false" default="msg['projetos.projeto.Unidade']" displayName="headerTextColumnUnidade"/>
+		<cc:attribute name="renderedColumnUnidade" required="false" default="true" displayName="renderedColumnUnidade"/>
+		<cc:attribute name="priorityColumnUnidade" required="false" default="2" displayName="priorityColumnUnidade"/>
+		<cc:attribute name="sortableColumnUnidade" required="false" default="true" displayName="sortableColumnUnidade"/> 
+		<cc:attribute name="filterableColumnUnidade" required="false" default="true" displayName="filterableColumnUnidade"/>
+		<cc:attribute name="filterFunctionColumnUnidade" required="false" default="contains" displayName="filterFunctionColumnUnidade"/>
+
+		<cc:attribute name="headerTextColumnProduto" required="false" default="msg['projetos.projeto.produto']" displayName="headerTextColumnProduto"/>
+		<cc:attribute name="renderedColumnProduto" required="false" default="true" displayName="renderedColumnProduto"/>
+		<cc:attribute name="priorityColumnProduto" required="false" default="2" displayName="priorityColumnProduto"/>
+		<cc:attribute name="sortableColumnProduto" required="false" default="true" displayName="sortableColumnProduto"/> 
+		<cc:attribute name="filterableColumnProduto" required="false" default="true" displayName="filterableColumnProduto"/>
+		<cc:attribute name="filterFunctionColumnProduto" required="false" default="contains" displayName="filterFunctionColumnProduto"/>
+
+		<cc:attribute name="headerTextColumnNome" required="false" default="msg['projetos.projeto.nome']" displayName="headerTextColumnNome"/>
+		<cc:attribute name="renderedColumnNome" required="false" default="true" displayName="renderedColumnNome"/>
+		<cc:attribute name="priorityColumnNome" required="false" default="2" displayName="priorityColumnNome"/>
+		<cc:attribute name="sortableColumnNome" required="false" default="true" displayName="sortableColumnNome"/> 
+		<cc:attribute name="filterableColumnNome" required="false" default="true" displayName="filterableColumnNome"/>
+		<cc:attribute name="filterFunctionColumnNome" required="false" default="contains" displayName="filterFunctionColumnNome"/>
+
+		<cc:attribute name="headerTextColumnGerente" required="false" default="msg['projetos.projeto.gerente']" displayName="headerTextColumnGerente"/>
+		<cc:attribute name="renderedColumnGerente" required="false" default="true" displayName="renderedColumnGerente"/>
+		<cc:attribute name="priorityColumnGerente" required="false" default="2" displayName="priorityColumnGerente"/>
+		<cc:attribute name="sortableColumnGerente" required="false" default="true" displayName="sortableColumnGerente"/> 
+		<cc:attribute name="filterableColumnGerente" required="false" default="true" displayName="filterableColumnGerente"/>
+		<cc:attribute name="filterFunctionColumnGerente" required="false" default="contains" displayName="filterFunctionColumnGerente"/>
+
+		<cc:attribute name="headerTextColumnInterlocutor" required="false" default="msg['projetos.projeto.interlocutor']" displayName="headerTextColumnInterlocutor"/>
+		<cc:attribute name="renderedColumnInterlocutor" required="false" default="true" displayName="renderedColumnInterlocutor"/>
+		<cc:attribute name="priorityColumnInterlocutor" required="false" default="2" displayName="priorityColumnInterlocutor"/>
+		<cc:attribute name="sortableColumnInterlocutor" required="false" default="true" displayName="sortableColumnInterlocutor"/> 
+		<cc:attribute name="filterableColumnInterlocutor" required="false" default="true" displayName="filterableColumnInterlocutor"/>
+		<cc:attribute name="filterFunctionColumnInterlocutor" required="false" default="contains" displayName="filterFunctionColumnInterlocutor"/>
+		
+		<cc:attribute name="headerTextColumnFase" required="false" default="msg['projetos.projeto.fase']" displayName="headerTextColumnFase"/>
+		<cc:attribute name="renderedColumnFase" required="false" default="true" displayName="renderedColumnFase"/>
+		<cc:attribute name="priorityColumnFase" required="false" default="2" displayName="priorityColumnFase"/>
+		<cc:attribute name="sortableColumnFase" required="false" default="true" displayName="sortableColumnFase"/> 
+		<cc:attribute name="filterableColumnFase" required="false" default="true" displayName="filterableColumnFase"/>
+		<cc:attribute name="filterFunctionColumnFase" required="false" default="contains" displayName="filterFunctionColumnFase"/>
+
+		<cc:attribute name="headerTextColumnInicioPlanejado" required="false" default="msg['projetos.projeto.inicio.planejado']" displayName="headerTextColumnInicioPlanejado"/>
+		<cc:attribute name="renderedColumnInicioPlanejado" required="false" default="true" displayName="renderedColumnInicioPlanejado"/>
+		<cc:attribute name="priorityColumnInicioPlanejado" required="false" default="2" displayName="priorityColumnInicioPlanejado"/>
+		<cc:attribute name="sortableColumnInicioPlanejado" required="false" default="true" displayName="sortableColumnInicioPlanejado"/> 
+		<cc:attribute name="filterableColumnInicioPlanejado" required="false" default="true" displayName="filterableColumnInicioPlanejado"/>
+		<cc:attribute name="filterFunctionColumnInicioPlanejado" required="false" default="contains" displayName="filterFunctionColumnInicioPlanejado"/>
+
+		<cc:attribute name="headerTextColumnTerminoPlanejado" required="false" default="msg['projetos.projeto.termino.planejado']" displayName="headerTextColumnTerminoPlanejado"/>
+		<cc:attribute name="renderedColumnTerminoPlanejado" required="false" default="true" displayName="renderedColumnTerminoPlanejado"/>
+		<cc:attribute name="priorityColumnTerminoPlanejado" required="false" default="2" displayName="priorityColumnTerminoPlanejado"/>
+		<cc:attribute name="sortableColumnTerminoPlanejado" required="false" default="true" displayName="sortableColumnTerminoPlanejado"/> 
+		<cc:attribute name="filterableColumnTerminoPlanejado" required="false" default="true" displayName="filterableColumnTerminoPlanejado"/>
+		<cc:attribute name="filterFunctionColumnTerminoPlanejado" required="false" default="contains" displayName="filterFunctionColumnTerminoPlanejado"/>
+
+		<cc:attribute name="headerTextColumnObjetivo" required="false" default="msg['projetos.projeto.termino.planejado']" displayName="headerTextColumnObjetivo"/>
+		<cc:attribute name="renderedColumnObjetivo" required="false" default="true" displayName="renderedColumnObjetivo"/>
+		<cc:attribute name="priorityColumnObjetivo" required="false" default="2" displayName="priorityColumnObjetivo"/>
+		<cc:attribute name="sortableColumnObjetivo" required="false" default="true" displayName="sortableColumnObjetivo"/> 
+		<cc:attribute name="filterableColumnObjetivo" required="false" default="true" displayName="filterableColumnObjetivo"/>
+		<cc:attribute name="filterFunctionColumnObjetivo" required="false" default="contains" displayName="filterFunctionColumnObjetivo"/>
+
+		<cc:attribute name="headerTextColumnImpactosBeneficios" required="false" default="msg['projetos.projeto.impactos.beneficios']" displayName="headerTextColumnImpactosBeneficios"/>
+		<cc:attribute name="renderedColumnImpactosBeneficios" required="false" default="true" displayName="renderedColumnImpactosBeneficios"/>
+		<cc:attribute name="priorityColumnImpactosBeneficios" required="false" default="2" displayName="priorityColumnImpactosBeneficios"/>
+		<cc:attribute name="sortableColumnImpactosBeneficios" required="false" default="true" displayName="sortableColumnImpactosBeneficios"/> 
+		<cc:attribute name="filterableColumnImpactosBeneficios" required="false" default="true" displayName="filterableColumnImpactosBeneficios"/>
+		<cc:attribute name="filterFunctionColumnImpactosBeneficios" required="false" default="contains" displayName="filterFunctionColumnImpactosBeneficios"/>
+
+		<cc:attribute name="headerTextColumnRiscos" required="false" default="msg['projetos.projeto.riscos']" displayName="headerTextColumnRiscos"/>
+		<cc:attribute name="renderedColumnRiscos" required="false" default="true" displayName="renderedColumnRiscos"/>
+		<cc:attribute name="priorityColumnRiscos" required="false" default="2" displayName="priorityColumnRiscos"/>
+		<cc:attribute name="sortableColumnRiscos" required="false" default="true" displayName="sortableColumnRiscos"/> 
+		<cc:attribute name="filterableColumnRiscos" required="false" default="true" displayName="filterableColumnRiscos"/>
+		<cc:attribute name="filterFunctionColumnRiscos" required="false" default="contains" displayName="filterFunctionColumnRiscos"/>
+
+		<cc:attribute name="headerTextColumnAcoes" required="false" default="msg['projetos.projeto.acoes']" displayName="headerTextColumnAcoes"/>
+		<cc:attribute name="renderedColumnAcoes" required="false" default="true" displayName="renderedColumnAcoes"/>
+		<cc:attribute name="priorityColumnAcoes" required="false" default="2" displayName="priorityColumnAcoes"/>
+
+
+		<cc:attribute name="labelVisualizarProjeto" required="false" default="Visualizar" displayName="labelVisualizarProjeto"  />
+		<cc:attribute name="actionVisualizarProjeto" required="false" default="projetosController.Visualizar( projeto )" displayName="actionVisualizarProjeto"  />
+		<cc:attribute name="onClickActionVisualizarProjeto" required="false" default="" displayName="onClickActionVisualizarProjeto" />
+		<cc:attribute name="onStartActionVisualizarProjeto" required="false" default="" displayName="onClickActionVisualizarProjeto" />
+		<cc:attribute name="onCompleteActionVisualizarProjeto" required="false" default="" displayName="onCompleteActionVisualizarProjeto" />
+		<cc:attribute name="onErrorActionVisualizarProjeto" required="false" default="" displayName="onErrorActionVisualizarProjeto" />
+		<cc:attribute name="onSuccessActionVisualizarProjeto" required="false" default="" displayName="onSuccessActionVisualizarProjeto" />
+		<cc:attribute name="updateActionVisualizarProjeto" required="false" default="" displayName="updateActionVisualizarProjeto" />
+		<cc:attribute name="renderedActionVisualizarProjeto" required="false" default="true" displayName="renderedActionVisualizarProjeto"  />
+		<cc:attribute name="titleActionVisualizarProjeto" required="false" default="Visualizar" displayName="titleActionVisualizarProjeto" />
+		<cc:attribute name="readonlyActionVisualizarProjeto" required="false" default="false" displayName="readonlyActionVisualizarProjeto" /> 
+		<cc:attribute name="disabledActionVisualizarProjeto" required="false" default="false" displayName="disabledActionVisualizarProjeto" />
+		<cc:attribute name="styleClassActionVisualizarProjeto" required="false" default="" displayName="styleClassActionVisualizarProjeto" />
+		<cc:attribute name="styleActionVisualizarProjeto" required="false" default="" displayName="styleActionVisualizarProjeto" />
+
+		<cc:attribute name="labelEditarProjeto" required="false" default="Editar" displayName="labelEditarProjeto"  />
+		<cc:attribute name="actionEditarProjeto" required="false" default="projetosController.Editar( projeto )" displayName="actionEditarProjeto"  />
+		<cc:attribute name="onClickActionEditarProjeto" required="false" default="" displayName="onClickActionEditarProjeto" />
+		<cc:attribute name="onStartActionEditarProjeto" required="false" default="" displayName="onClickActionEditarProjeto" />
+		<cc:attribute name="onCompleteActionEditarProjeto" required="false" default="" displayName="onCompleteActionEditarProjeto" />
+		<cc:attribute name="onErrorActionEditarProjeto" required="false" default="" displayName="onErrorActionEditarProjeto" />
+		<cc:attribute name="onSuccessActionEditarProjeto" required="false" default="" displayName="onSuccessActionEditarProjeto" />
+		<cc:attribute name="updateActionEditarProjeto" required="false" default="" displayName="updateActionEditarProjeto" />
+		<cc:attribute name="renderedActionEditarProjeto" required="false" default="true" displayName="renderedActionEditarProjeto"  />
+		<cc:attribute name="titleActionEditarProjeto" required="false" default="Editar" displayName="titleActionEditarProjeto" />
+		<cc:attribute name="readonlyActionEditarProjeto" required="false" default="false" displayName="readonlyActionEditarProjeto" /> 
+		<cc:attribute name="disabledActionEditarProjeto" required="false" default="false" displayName="disabledActionEditarProjeto" />
+		<cc:attribute name="styleClassActionEditarProjeto" required="false" default="" displayName="styleClassActionEditarProjeto" />
+		<cc:attribute name="styleActionEditarProjeto" required="false" default="" displayName="styleActionEditarProjeto" />
+
+		<cc:attribute name="labelDeletarProjeto" required="false" default="Deletar" displayName="labelDeletarProjeto"  />
+		<cc:attribute name="actionDeletarProjeto" required="false" default="projetosController.deletar( projeto )" displayName="actionDeletarProjeto"  />
+		<cc:attribute name="onClickActionDeletarProjeto" required="false" default="" displayName="onClickActionDeletarProjeto" />
+		<cc:attribute name="onStartActionDeletarProjeto" required="false" default="" displayName="onClickActionDeletarProjeto" />
+		<cc:attribute name="onCompleteActionDeletarProjeto" required="false" default="" displayName="onCompleteActionDeletarProjeto" />
+		<cc:attribute name="onErrorActionDeletarProjeto" required="false" default="" displayName="onErrorActionDeletarProjeto" />
+		<cc:attribute name="onSuccessActionDeletarProjeto" required="false" default="" displayName="onSuccessActionDeletarProjeto" />
+		<cc:attribute name="updateActionDeletarProjeto" required="false" default="" displayName="updateActionDeletarProjeto" />
+		<cc:attribute name="renderedActionDeletarProjeto" required="false" default="true" displayName="renderedActionDeletarProjeto"  />
+		<cc:attribute name="titleActionDeletarProjeto" required="false" default="Deletar" displayName="titleActionDeletarProjeto" />
+		<cc:attribute name="readonlyActionDeletarProjeto" required="false" default="false" displayName="readonlyActionDeletarProjeto" /> 
+		<cc:attribute name="disabledActionDeletarProjeto" required="false" default="false" displayName="disabledActionDeletarProjeto" />
+		<cc:attribute name="styleClassActionDeletarProjeto" required="false" default="" displayName="styleClassActionDeletarProjeto" />
+		<cc:attribute name="styleActionDeletarProjeto" required="false" default="" displayName="styleActionDeletarProjeto" />
+
+		
+	</cc:interface>
+	<cc:implementation>
+	    <ui:composition>
+			<p:panel id="projetosPanelContainer" rendered="#{cc.attrs.renderedPanelContainer}">
+				<h:form id="projetosTableForm">
+					<p:dataTable 
+						id="projetosDataTable" 
+						var="projeto" 
+						value="#{cc.attrs.valueDataTable}" 
+						paginator="#{cc.attrs.paginatorDataTable}"
+						rows="#{cc.attrs.rowsDataTable}"
+						paginatorTemplate="#{cc.attrs.paginatorTemplateDataTable}"
+						rowsPerPageTemplate="#{cc.attrs.rowsPerPageDataTable}" 
+						rendered="#{cc.attrs.renderedDataTable}" 
+						emptyMessage="#{cc.attrs.emptyMessageDataTable}">
+						
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnId}" 
+							priority="#{cc.attrs.priorityColumnId}" 
+							rendered="#{cc.attrs.renderedColumnId}" 
+							sortBy="#{projeto.id}"
+							sortable="#{cc.attrs.sortableColumnId}"
+							filterBy="#{projeto.id}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnId}"
+							filterable="#{cc.attrs.filterableColumnId}" >
+							<h:outputText value="#{projeto.id}" title="#{projeto.id}"/>
+						</p:column>
+
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnTipoProjeto}" 
+							priority="#{cc.attrs.priorityColumnTipoProjeto}" 
+							rendered="#{cc.attrs.renderedColumnTipoProjeto}" 
+							sortBy="#{projeto.tipoProjeto.descricao}"
+							sortable="#{cc.attrs.sortableColumnTipoProjeto}"
+							filterBy="#{projeto.tipoProjeto.descricao}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnTipoProjeto}"
+							filterable="#{cc.attrs.filterableColumnTipoProjeto}" >
+							<h:outputText value="#{projeto.tipoProjeto.descricao}" 
+								title="#{projeto.tipoProjeto.descricao}" 
+								styleClass="#{projeto.tipoProjeto.css}"/>
+						</p:column>
+
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnUnidade}" 
+							priority="#{cc.attrs.priorityColumnUnidade}" 
+							rendered="#{cc.attrs.renderedColumnUnidade}" 
+							sortBy="#{projeto.Unidade}"
+							sortable="#{cc.attrs.sortableColumnUnidade}"
+							filterBy="#{projeto.unidade.nome}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnUnidade}"
+							filterable="#{cc.attrs.filterableColumnUnidade}" >
+							<h:outputText value="#{projeto.unidade.nome}" title="#{projeto.unidade.nome}" />
+						</p:column>
+						
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnProduto}" 
+							priority="#{cc.attrs.priorityColumnProduto}" 
+							rendered="#{cc.attrs.renderedColumnProduto}" 
+							sortBy="#{projeto.Produto}"
+							sortable="#{cc.attrs.sortableColumnProduto}"
+							filterBy="#{projeto.produto}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnProduto}"
+							filterable="#{cc.attrs.filterableColumnProduto}" >
+							<h:outputText value="#{projeto.produto}" title="#{projeto.produto}" />
+						</p:column>
+						
+						
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnData}" 
+							priority="#{cc.attrs.priorityColumnData}" 
+							rendered="#{cc.attrs.renderedColumnData}" 
+							sortBy="#{projeto.data}"
+							sortable="#{cc.attrs.sortableColumnData}"
+							filterBy="#{projeto.data}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnData}"
+							filterable="#{cc.attrs.filterableColumnData}" >
+							<h:outputText id="projetoData" value="#{projeto.data}">
+								<h:outputFormat value="#{cc.attrs.outputFormatColumnData}" />
+							</h:outputText>
+						</p:column>
+						
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnValor}" 
+							priority="#{cc.attrs.priorityColumnValor}" 
+							rendered="#{cc.attrs.renderedColumnValor}" 
+							sortBy="#{projeto.valor}"
+							sortable="#{cc.attrs.sortableColumnValor}"
+							filterBy="#{projeto.valor}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnValor}"
+							filterable="#{cc.attrs.filterableColumnValor}" >
+							<h:outputText value="#{projeto.valor}">
+								<f:convertNumber type="currency" 
+									currencyCode="#{cc.attrs.currencyCodeColumnValor}" 
+									currencySymbol="#{cc.attrs.currencySymbolColumnValor}"/>
+							</h:outputText>
+						</p:column>
+						
+						
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnNome}" 
+							priority="#{cc.attrs.priorityColumnNome}" 
+							rendered="#{cc.attrs.renderedColumnNome}" 
+							sortBy="#{projeto.nome}"
+							sortable="#{cc.attrs.sortableColumnNome}"
+							filterBy="#{projeto.nome}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnNome}"
+							filterable="#{cc.attrs.filterableColumnNome}" >
+							<h:outputText value="#{projeto.nome}" title="#{projeto.nome}" />
+						</p:column>
+
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnGerente}" 
+							priority="#{cc.attrs.priorityColumnGerente}" 
+							rendered="#{cc.attrs.renderedColumnGerente}" 
+							sortBy="#{projeto.gerente.nome}"
+							sortable="#{cc.attrs.sortableColumnGerente}"
+							filterBy="#{projeto.gerente.nome}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnGerente}"
+							filterable="#{cc.attrs.filterableColumnNome}" >
+							<h:outputText value="#{projeto.gerente.nome}" title="#{projeto.gerente.nome}" />
+						</p:column>
+
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnInterlocutor}" 
+							priority="#{cc.attrs.priorityColumnInterlocutor}" 
+							rendered="#{cc.attrs.renderedColumnInterlocutor}" 
+							sortBy="#{projeto.interlocutor.nome}"
+							sortable="#{cc.attrs.sortableColumnInterlocutor}"
+							filterBy="#{projeto.interlocutor.nome}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnInterlocutor}"
+							filterable="#{cc.attrs.filterableColumnInterlocutor}" >
+							<h:outputText value="#{projeto.interlocutor.nome}" title="#{projeto.interlocutor.nome}" />
+						</p:column>
+						
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnFase}" 
+							priority="#{cc.attrs.priorityColumnFase}" 
+							rendered="#{cc.attrs.renderedColumnFase}" 
+							sortBy="#{projeto.fase}"
+							sortable="#{cc.attrs.sortableColumnFase}"
+							filterBy="#{projeto.fase}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnFase}"
+							filterable="#{cc.attrs.filterableColumnFase}" >
+							<h:outputText value="#{projeto.fase}" title="#{projeto.fase}" />
+						</p:column>
+
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnInicioPlanejado}" 
+							priority="#{cc.attrs.priorityColumnInicioPlanejado}" 
+							rendered="#{cc.attrs.renderedColumnInicioPlanejado}" 
+							sortBy="#{projeto.inicioPlanejado}"
+							sortable="#{cc.attrs.sortableColumnInicioPlanejado}"
+							filterBy="#{projeto.inicioPlanejado}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnInicioPlanejado}"
+							filterable="#{cc.attrs.filterableColumnInicioPlanejado}" >
+							<h:outputText 
+								id="projetoInicioPlanejado" 
+								value="#{projeto.InicioPlanejado}">
+								<h:outputFormat value="#{cc.attrs.outputFormatColumnInicioPlanejado}" />
+							</h:outputText>
+						</p:column>
+
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnTerminoPlanejado}" 
+							priority="#{cc.attrs.priorityColumnTerminoPlanejado}" 
+							rendered="#{cc.attrs.renderedColumnTerminoPlanejado}" 
+							sortBy="#{projeto.TerminoPlanejado}"
+							sortable="#{cc.attrs.sortableColumnTerminoPlanejado}"
+							filterBy="#{projeto.terminoPlanejado}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnTerminoPlanejado}"
+							filterable="#{cc.attrs.filterableColumnTerminoPlanejado}" >
+							<h:outputText 
+								id="projetoTerminoPlanejado" 
+								value="#{projeto.terminoPlanejado}">
+								<h:outputFormat value="#{cc.attrs.outputFormatColumnTerminoPlanejado}" />
+							</h:outputText>
+						</p:column>
+
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnObjetivo}" 
+							priority="#{cc.attrs.priorityColumnObjetivo}" 
+							rendered="#{cc.attrs.renderedColumnObjetivo}" 
+							sortBy="#{projeto.objetivo}"
+							sortable="#{cc.attrs.sortableColumnObjetivo}"
+							filterBy="#{projeto.objetivo}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnObjetivo}"
+							filterable="#{cc.attrs.filterableColumnObjetivo}" >
+							<h:outputText value="#{projeto.objetivo}" title="#{projeto.objetivo}" />
+						</p:column>
+
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnImpactosBeneficios}" 
+							priority="#{cc.attrs.priorityColumnImpactosBeneficios}" 
+							rendered="#{cc.attrs.renderedColumnImpactosBeneficios}" 
+							sortBy="#{projeto.ImpactosBeneficios}"
+							sortable="#{cc.attrs.sortableColumnImpactosBeneficios}"
+							filterBy="#{projeto.impactosBeneficios}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnImpactosBeneficios}"
+							filterable="#{cc.attrs.filterableColumnImpactosBeneficios}" >
+							<h:outputText value="#{projeto.impactosBeneficios}" title="#{projeto.impactosBeneficios}" />
+						</p:column>
+
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnRiscos}" 
+							priority="#{cc.attrs.priorityColumnRiscos}" 
+							rendered="#{cc.attrs.renderedColumnRiscos}" 
+							sortBy="#{projeto.riscos}"
+							sortable="#{cc.attrs.sortableColumnRiscos}"
+							filterBy="#{projeto.riscos}" 
+							filterFunction="#{cc.attrs.filterFunctionColumnRiscos}"
+							filterable="#{cc.attrs.filterableColumnRiscos}" >
+							<h:outputText value="#{projeto.riscos}" title="#{projeto.riscos}" />
+						</p:column>
+						
+						<p:column 
+							headerText="#{cc.attrs.headerTextColumnAcoes}" 
+							priority="#{cc.attrs.priorityColumnAcoes}" 
+							rendered="#{cc.attrs.renderedColumnAcoes}" 
+							id="projetoAcoes">
+							<div class="row">
+								<div>
+									<p:commandButton 
+										id="projetoVisualizar" 
+										value="${cc.attrs.labelVisualizaroProjeto}"
+										action="#{cc.attrs.actionVisualizarProjeto}" 
+										onclick="#{cc.attrs.onClickActionVisualizarProjeto}" 
+										onstart="#{cc.attrs.onStartActionVisualizarProjeto}"
+										oncomplete="#{cc.attrs.onCompleteActionVisualizarProjeto}"
+										onerror="#{cc.attrs.onErrorActionVisualizarProjeto}" 
+										onsuccess="#{cc.attrs.onSuccessActionVisualizarProjeto}" 
+										update="#{cc.attrs.updateActionVisualzarProjeto}" 
+										rendered="#{cc.attrs.renderedActionVisualizarProjeto}" 
+										title="#{cc.attrs.titleActionVisualizarProjeto}" 
+										readonly="#{cc.attrs.readonlyActionVisualizarProjeto}" 
+										disabled="#{cc.attrs.disabledActionVisualizarProjeto}" 
+										styleClass="#{cc.attrs.styleClassActionVisualizarProjeto}"
+										style="#{cc.attrs.styleActionVisualizarProjeto}" />
+								</div>
+								<div>
+									<p:commandButton 
+										id="projetoEditar" 
+										value="${cc.attrs.labelEditarProjeto}"
+										action="#{cc.attrs.actionEditarProjeto}" 
+										onclick="#{cc.attrs.onClickActionEditarProjeto}" 
+										onstart="#{cc.attrs.onStartActionEditarProjeto}"
+										oncomplete="#{cc.attrs.onCompleteActionEditarProjeto}"
+										onerror="#{cc.attrs.onErrorActionEditarProjeto}" 
+										onsuccess="#{cc.attrs.onSuccessActionEditarProjeto}" 
+										update="#{cc.attrs.updateActionEditarProjeto}" 
+										rendered="#{cc.attrs.renderedActionEditarProjeto}" 
+										title="#{cc.attrs.titleActionEditarProjeto}" 
+										readonly="#{cc.attrs.readonlyActionEditarProjeto}" 
+										disabled="#{cc.attrs.disabledActionEditarProjeto}" 
+										styleClass="#{cc.attrs.styleClassActionEditarProjeto}"
+										style="#{cc.attrs.styleActionEditarProjeto}" />
+								</div>
+								<div>
+									<p:commandButton 
+										id="projetoDeletar" 
+										value="${cc.attrs.labelDeletarProjeto}"
+										action="#{cc.attrs.actionDeletarProjeto}" 
+										onclick="#{cc.attrs.onClickActionDeletarProjeto}" 
+										onstart="#{cc.attrs.onStartActionDeletarProjeto}"
+										oncomplete="#{cc.attrs.onCompleteActionDeletarProjeto}"
+										onerror="#{cc.attrs.onErrorActionDeletarProjeto}" 
+										onsuccess="#{cc.attrs.onSuccessActionDeletarProjeto}" 
+										update="#{cc.attrs.updateActionDeletarProjeto}" 
+										rendered="#{cc.attrs.renderedActionDeletarProjeto}" 
+										title="#{cc.attrs.titleActionDeletarProjeto}" 
+										readonly="#{cc.attrs.readonlyActionDeletarProjeto}" 
+										disabled="#{cc.attrs.disabledActionDeletarProjeto}" 
+										styleClass="#{cc.attrs.styleClassActionDeletarProjeto}"
+										style="#{cc.attrs.styleActionDeletarProjeto}" />
+								</div>
+							</div>
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</p:panel>	          
+	    </ui:composition>
+    </cc:implementation>
+</h:body>
+</h:html>

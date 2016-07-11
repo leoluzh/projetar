@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+<h:head></h:head>
+<h:body>
+    <ui:composition>
+    	<div>
+			<b>SISTEMA DE GESTÃO E ACOMPANHAMENTO DE PROJETOS</b>
+			<br/>
+			<b>Request Context Path: <h:outputText value="#{facesContext.externalContext.requestContextPath}" /></b>
+			<br/>
+			<b>Request URL: <h:outputText value="#{facesContext.externalContext.request.requestURL}" /> </b>
+			<br/>
+			<b>Application Context Path: <h:outputText value="#{facesContext.externalContext.request.requestURI}"/></b>
+			<br/>
+			<b>Base Application Path: <h:outputText value="#{of:getRequestBaseURL()}" /></b>
+			<br/>
+			<b>Request Domain URL: <h:outputText value="#{of:getRequestDomainURL()}" /></b>
+		</div>
+    </ui:composition>
+</h:body>
+</html>    

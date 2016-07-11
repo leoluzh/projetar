@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<h:html 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+    <ui:composition>
+    
+ 	<h:form id="formSessionIdleMonitor" prependId="false">
+		<p:idleMonitor 
+			id="idleMonitor" 
+			timeout="#{sessiom.maxInactiveInterval * 1000}">
+			<p:ajax 
+				event="idle" 
+				listener="#{idleMonitorController.idleEventListener}" 
+				oncomplete="PF('idleDialog').show(); return true;" />
+			<p:ajax 
+				event="active" 
+				listener="#{idleMonitorController.activeEventListener}" 
+				oncomplete="PF('idleDialog').hide(); return true;"/>	
+		</p:idleMonitor>
+	
+		<p:dialog 
+			header="#{msg['app.monitor.dialog.header']}"
+			id="idleDialog" 
+			widgetVar="idleDialog"
+			showEffect="fade"
+			hideEffect="fade" 
+			modal="true"
+			closable="false" 
+			draggable="false" 
+			resizable="false">
+			<br/>
+			<p>
+			</p>
+		</p:dialog>
+	
+	</h:form>
+ 
+    </ui:composition>
+</h:body>
+</h:html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+<h:head></h:head>
+<h:body>
+	<cc:interface>
+		<cc:attribute name="id"  displayName="id" default="" required="false" type="java.lang.String" />
+		<cc:attribute name="type" displayName="type" default="success" required="true" type="java.lang.String" />
+		<cc:attribute name="message" displayName="message" default="" required="true" type="java.lang.String" />
+		<cc:attribute name="showAlertLink" displayName="showAlertLink" default="false" required="false" type="java.lang.Boolean"/>
+		<cc:attribute name="disabledAlertLink" displayName="disabledAlertLink" default="false" required="false" type="java.lang.Boolean"/>
+		<cc:attribute name="alertLinkValue" displayName="alertLinkValue" default="" required="false" type="java.lang.String"/>
+		<cc:attribute name="alertLinkOutcome" displayName="alertLinkOutcome" default="" required="false" type="java.lang.String"/>
+	</cc:interface>
+	<cc:implementation>	
+        <div id="#{cc.attrs.id}" class="alert alert-#{cc.attrs.type} alert-dismissable">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+            <h:outputText value="#{cc.attrs.message}"/><h:link value="#{cc.attrs.alertLinkValue}" outcome="#{cc.attrs.alertLinkOutcome}" disabled="#{cc.attrs.disabledAlertLink}" rendered="#{cc.attrs.showAlertLink}"/>.
+        </div>
+    </cc:implementation>
+</h:body>
+</h:html>

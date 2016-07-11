@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" 
+ xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+    http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
+	<description>Projetar - Sistema de controle de projetos e da Secretaria de Fazenda de Minas Gerais.</description>
+	<display-name>projetar</display-name>
+	<module-name>projetar</module-name>
+
+	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<!--
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	-->
+	
+	<!-- controlar o numero de sessoes aberta por usuario -->
+	<listener>
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+
+	<!--
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	-->
+
+
+   <!-- Activate the JSF 2.2 servlet -->
+	<context-param>
+	    <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+	    <param-value>.xhtml</param-value>
+	</context-param>
+   <!-- Tell the context which URLs to process as facelets.  -->
+	<servlet>
+	    <servlet-name>Faces Servlet</servlet-name>
+	    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+	    <load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>Faces Servlet</servlet-name>
+	    <url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+   <!-- This is an optional parameter, but it makes troubleshooting errors much easier.  -->
+   <!-- You may want to delete it before final deployment -->
+   <context-param>
+      <param-name>facelets.DEVELOPMENT</param-name>
+      <param-value>true</param-value>
+   </context-param>
+	
+   <context-param>
+   	  <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+   	  <param-value>true</param-value>
+   </context-param>	
+	
+	<error-page>
+		<!-- Missing login -->
+		<error-code>401</error-code>
+		<location>/401.xhtml</location>
+	</error-page>
+	<error-page>
+		<!-- Forbidden directory listing -->
+		<error-code>403</error-code>
+		<location>/403.xhtml</location>
+	</error-page>
+	<error-page>
+		<!-- Missing resource -->
+		<error-code>404</error-code>
+		<location>/404.xhtml</location>
+	</error-page>
+	
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.xhtml</location>
+	</error-page>
+	<error-page>
+		<!-- unsupported servlet method -->
+		<error-code>503</error-code>
+		<location>/503.xhtml</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/error.xhtml</location>
+	</error-page>
+
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+	 	<param-value>bootstrap</param-value>
+	</context-param>
+	
+	<context-param>
+	 	<param-name>primefaces.FONT_AWESOME</param-name>
+	 	<param-value>true</param-value>
+	</context-param>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+		<tracking-mode>COOKIE</tracking-mode>
+	</session-config>
+	
+	<locale-encoding-mapping-list>
+		<locale-encoding-mapping>
+			<locale>pt-BR</locale>
+			<encoding>UTF-8</encoding>
+		</locale-encoding-mapping>
+	</locale-encoding-mapping-list>
+	
+	
+	<!-- 
+		WORKAROUND: fazer spring + cdi compartinhar o mesmo context de persistencia 
+	-->
+	
+	<persistence-unit-ref>
+		<persistence-unit-ref-name>persistence/projetar-emf</persistence-unit-ref-name>
+		<persistence-unit-name>PROJETAR_PERSISTENCE_UNIT</persistence-unit-name>
+	</persistence-unit-ref>
+
+	<context-param>
+		<param-name>DEFAULT_TIMEZONE</param-name>
+		<param-value>America/Sao_Paulo</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>DEFAULT_DATE_PATTERN</param-name>
+		<param-value>dd/MM/yyyy</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>DEFAULT_DATE_TIME_PATTERN</param-name>
+		<param-value>dd/MM/yyyy HH:mm:ss</param-value>
+	</context-param>
+	
+</web-app>

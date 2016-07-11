@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	    <meta http-equiv="Content-Language" content="pt-br"/> 
+	    <meta charset="utf-8"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <title><h:outputText value="#{msg['page.missing.login.title']}"/></title>
+	    
+	    <h:outputStylesheet library="css" name="bootstrap.css"/>
+	    <h:outputStylesheet library="css" name="font-awesome.css"/>
+	    <h:outputStylesheet library="css" name="animate.css"/>
+	    <h:outputStylesheet library="css" name="style.css"/>
+	</h:head>
+	<h:body class="gray-bg">
+	    <div class="middle-box text-center animated fadeInDown">
+	        <h1><h:outputText value="#{msg['page.missing.login.code']}"/></h1>
+	        <h3 class="font-bold"><h:outputText value="#{msg['page.missing.login.msg']}" /></h3>
+	
+	        <div class="error-desc">
+	        	<h:outputText value="#{msg['page.missing.login.text']}" /><br/>
+	            <h:outputText value="#{msg['page.missing.login.text.return']}"/><br/>
+	           	<h:link outcome="login.xhtml" styleClass="btn btn-primary m-t">
+	           		<h:outputText value="#{msg['page.missing.login.back']}" />
+	           	</h:link>
+	        </div>
+	    </div>
+	    <!-- Mainly scripts -->
+	    <h:outputScript library="js" name="jquery-2.js" />
+	    <h:outputScript library="js" name="bootstrap.js" />
+	</h:body>
+</html>

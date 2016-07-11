@@ -1,0 +1,199 @@
+<ui:composition 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:customcomponents="http://xmlns.jcp.org/jsf/composite/customcomponents">
+		<!-- 31998297103 -->
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="wrapper wrapper-content animated fadeInUp">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="m-b-md">
+                                        <a href="#" class="btn btn-white btn-xs pull-right"></a>
+                                        <h:commandLink  action="" value="Editar Usuário" styleClass="btn btn-white btn-xs pull-right"/>
+                                        <h2><h:outputText value="#{usuarioController.usuario.nome}"/></h2>
+                                    </div>
+                                    <dl class="dl-horizontal">
+                                        <dt>Habilitado:</dt> 
+                                        <dd> 
+                                       		<h:outputText 
+                                       			value="#{usuarioController.usuario.habilitado ? 'Sim' : 'Não'}" 
+                                       			styleClass="label #{usuarioController.usuario.habilitado ? 'label-success' : 'label-danger' }" />
+                                       </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <dl class="dl-horizontal">
+
+                                        <dt>Usuário:</dt> <dd><h:outputText value="#{usuarioController.usuario.nome}" /> </dd>
+                                        <dt>Login:</dt> <dd> <h:outputText value="#{usuarioController.usuario.username}" /> </dd>
+                                        <dt>Email:</dt> <dd><h:outputText value="#{usuarioController.usuario.email}" /> </dd>
+                                        <dt>Revisões:</dt> <dd>  <h:outputText value="#{usuarioController.getRevisoes( usuarioController.usuario ).size()}"/></dd>
+                                    </dl>
+                                </div>
+                                <div class="col-lg-7" id="cluster_info">
+                                    <dl class="dl-horizontal" >
+
+                                        <dt>Última atualização:</dt> 
+                                        	<dd> 
+                                        		<h:outputText value="#{usuarioController.getUltimaRevisao(usuario).dataAtualizacao}" >
+                                        			<f:convertDateTime pattern="HH:mm:ss - dd/MM/yyyy"/>
+                                        		</h:outputText> 
+                                        	</dd>
+                                        <dt>Atualizar por: </dt> <dd> <h:outputText value="#{usuarioController.getUltimaRevisao(usuario).usuarioAtualizacao.nome}"/> </dd>
+                                        <dt>Criado em:</dt> 
+                                        	<dd> 
+                                        	    <h:outputText value="#{usuarioController.getPrimeiraRevisao(usuario).dataAtualizacao}" >
+                                        			<f:convertDateTime pattern="HH:mm:ss - dd/MM/yyyy"/>
+                                        		</h:outputText> 
+                                        	</dd>
+                                        <dt>Criado por:</dt> <dd> <h:outputText value="#{usuarioController.getPrimeiraRevisao(usuario).usuarioAtualizacao.nome}"/> </dd>
+                                        
+                                        
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <dl class="dl-horizontal">
+                                        <dt>Completos:</dt>
+                                        <dd>
+                                            <div class="progress progress-striped active m-b-sm">
+                                                <div style="width: 60%;" class="progress-bar"></div>
+                                            </div>
+                                            <small>Projetos completados em <strong>60%</strong>.</small>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="row m-t-sm">
+                                <div class="col-lg-12">
+	                                <div class="panel blank-panel">
+		                                <div class="panel-heading">
+		                                    <div class="panel-options">
+		                                        <ul class="nav nav-tabs">
+		                                            <li class="active"><a href="project_detail.html#tab-1" data-toggle="tab">Histórico do Usuário</a></li>
+		                                            <li class=""><a href="project_detail.html#tab-2" data-toggle="tab">Perfis do Usuário</a></li>
+		                                        </ul>
+		                                    </div>
+		                                </div>
+		
+		                                <div class="panel-body">
+		
+			                                <div class="tab-content">
+				                                <div class="tab-pane active" id="tab-1">
+				
+													<p:dataTable
+														id="usuarioRevisoesDataTable"
+														widgetVar="usuarioRevisoesDataTable"
+														value="#{usuarioController.getUsuarioRevisoes( usuarioController.usuario )}"
+														var="#{entry}" 
+														rowKey="#{entry.key}"
+														emptyMessage="Usuário não possui nenhuma revisão até o momento."
+														styleClass="table table-striped">
+													
+														<p:column 
+															headerText="Revisão" 
+															sortBy="#{entry.key}">
+															<h:outputText value="#{entry.key}"/>
+														</p:column>
+														
+														<p:column 
+															headerText="Usuário" 
+															filterBy="#{entry.value.username}" 
+															filterMatchMode="contains">
+															<h:outputText value="#{entry.value.username}" />
+														</p:column>
+														
+														<p:column 
+															headerText="Nome"
+															filterBy="#{entry.value.nome}" 
+															filterMatchMode="contains">
+															<h:outputText value="#{entry.value.nome}" />
+														</p:column>
+														
+														<p:column
+															headerText="Email"
+															filterBy="#{entry.value.email}"
+															filterMatchMode="contains">
+															<h:outputText value="#{entry.value.email}" />
+														</p:column>
+														
+														<p:column
+															headerText="Habilitado?" 
+															filterOptions="#{usuarioController.habilitadoFilterOptions}"
+															filterBy="#{entry.value.habilitado}" 
+															filterMatchMode="exact">
+															<h:outputText 
+																value="#{entry.value.habilitado ? 'Sim' : 'Não'}" 
+																styleClass="label #{entry.value.habilitado ? 'label-success' :  'label-danger'}" />	
+														</p:column>
+													
+														<p:column 
+															headerText="Data Atualização" 
+															sortBy="#{entry.value.dataAtualizacao}">
+															<h:outputText value="#{entry.value.dataAtualizacao}">
+																<f:convertDateTime pattern="HH:mm:ss - dd/MM/yyyy"/>
+															</h:outputText>
+														</p:column>
+														
+														<p:column
+															headerText="Usuário Atualização"
+															filterBy="#{entry.value.usuarioAtualizacao.nome}" 
+															filterMatchMode="contains">
+															<h:outputText value="#{entry.value.usuarioAtualizacao.nome}" />
+														</p:column>
+													
+													</p:dataTable>
+				
+				                                </div>
+				                                
+				                                <div class="tab-pane" id="tab-2">
+				                                
+				                                	<p:dataTable 
+				                                		id="usuarioPerfisDataTable"
+				                                		widgetVar="usuarioPerfilsDataTable"
+				                                		values="#{usuarioController.usuario.perfis}"
+				                                		var="perfil" 
+				                                		rowKey="#{perfil.id}"
+				                                		emptyMessage="Usuário não possui nenhum perfil associado até o momento."
+				                                		styleClass="table table-striped">
+				                                	
+				                                		<p:column 
+				                                			headerText="Nome"
+				                                			filterBy="#{perfil.nome}"
+				                                			filterMatchMode="contains">
+				                                			<h:outputText value="#{perfil.nome}" />
+				                                		</p:column>
+				                                		
+				                                		<p:column
+				                                			headerText="Descrição"
+				                                			filterBy="#{perfil.descricao}"
+				                                			filterMatchMode="contains">
+				                                			<h:outputText value="#{perfil.descricao}" styleClass="small"/>	
+				                                		</p:column>
+				                                	
+				                                	</p:dataTable>
+				
+				
+				                                </div>
+			                                </div>
+			
+		                                </div>
+		
+	                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	
+</ui:composition>	
